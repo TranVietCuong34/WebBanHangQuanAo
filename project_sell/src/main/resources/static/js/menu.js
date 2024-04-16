@@ -14,8 +14,8 @@ async function loadMenu() {
     }
     var menu =
         `<div id="topmenu" class="topmenu container-fluid row">
-        <div class="col-sm-2"><a href="index" class="linktop"><img style="width: 70px;" src="image/logo.png"></a></div>
-        <div class="col-sm-6">
+        <div class="col-sm-2"><a href="index" class="linktop"><img style="width: 100px; margin-top: 10px;" src="image/logo.png"></a></div>
+        <div class="col-sm-7">
             <div class="searchmenu">
                 <form action="product"><input name="search" onkeyup="searchMenu()" class="imputsearchmenu" placeholder="Tìm kiếm" id="inputsearchmenu" aria-describedby="basic-addon1" autocomplete="off" >
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="listproductsearch">
@@ -23,11 +23,8 @@ async function loadMenu() {
                     <div id="listproductmn">
                         <a href="" class="tenspsearch"><div class="singlesearch col-md-12">
                             <div class="row">
-                                <div class="col-2"><img class="imgprosearch" src="image/pro.webp"></div>
-                                <div class="col-10">
-                                    <span class="tenspsearch">Chân váy nữ dáng A</span><br>
-                                    <span class="tenspsearch">214.500đ</span>
-                                </div>
+                                <div class="col-2"></div>
+                                <div class="col-10"></div>
                             </div>
                         </div></a>
                     </div>
@@ -35,9 +32,10 @@ async function loadMenu() {
                 <button class="btnsearchmenu"><i class="fa fa-search"></i></button></form>
             </div>
         </div>
-        <div class="col-sm-4 addrmenu">
-            <a href="" class="amens pointermenu"><i class="amens fa fa-map-marker gvs"> Xem địa chỉ</i></a>
-            <a href="" class="amens pointermenu"><i class="amens fa fa-phone"> 098123672</i></a>
+        
+        <div class="col-sm-3 addrmenu mt-2">
+            ${dn}
+                <a href="cart" class="pointermenu"><i class="fa fa-shopping-bag"><span class="slcartmenu" id="slcartmenu">0</span> Giỏ hàng</i></a>
         </div>
     </div>
     <nav class="navbar navbar-expand-lg">
@@ -56,10 +54,7 @@ async function loadMenu() {
                 <li class="nav-item"><a class="nav-link menulink" href="about">Về chúng tôi</a></li>
                 <li class="nav-item"><a class="nav-link menulink" href="blog">Blog</a></li>
             </ul>
-            <div class="d-flex">
-                ${dn}
-                <a href="cart" class="pointermenu"><i class="fa fa-shopping-bag"><span class="slcartmenu" id="slcartmenu">0</span> Giỏ hàng</i></a>
-            </div>
+            
         </div>
     </nav>`
     document.getElementById("menu").innerHTML = menu
@@ -138,7 +133,7 @@ async function searchMenuMobile() {
 }
 
 function loadFooter() {
-    var foo = `<footer class="text-center text-lg-start text-muted">
+    var foo = `<footer class="text-center text-lg-start text-muted" style="background: #f1f1f1">
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div class="me-5 d-none d-lg-block"><span>Theo dõi chúng tôi tại:</span></div>
         <div>
@@ -150,35 +145,35 @@ function loadFooter() {
         <a href="" class="me-4 text-reset"><i class="fab fa-github"></i></a>
         </div>
     </section>
-    <section class="">
+    <section >
         <div class=" text-center text-md-start mt-5">
         <div class="row mt-3">
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4"><i class="fas fa-gem me-3"></i>Male fashion</h6>
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
+            <h6 class="text-uppercase fw-bold mb-4 "><i class="fas fa-gem me-3"></i>WuMing Shop</h6>
             <p>
-                Chúng tôi cung cấp dịch vụ thời trang giá rẻ cho nam, nữ giới trẻ với phong cách bắt kịp trend hiện nay
+                Hãy trải nghiệm những sản phẩm tốt nhất của chúng tôi để cảm nhận sự khác biệt.
             </p>
             </div>
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">Sản phẩm</h6>
-            <p><a href="#!" class="text-reset">Uy tín</a></p>
-            <p><a href="#!" class="text-reset">Chất lượng</a></p>
-            <p><a href="#!" class="text-reset">Nguồn gốc rõ ràng</a></p>
-            <p><a href="#!" class="text-reset">Giá rẻ</a></p>
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 ">
+            <h6 class="text-uppercase fw-bold mb-4 ">Hỗ trợ khách hàng</h6>
+            <p><a href="#!" class="text-reset">Chính sách khách hàng</a></p>
+            <p><a href="#!" class="text-reset">Chính sách vận chuyển</a></p>
+            <p><a href="#!" class="text-reset">Chính sách bảo hành</a></p>
+            <p><a href="#!" class="text-reset">Chính sách đổi trả</a></p>
             </div>
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">Dịch vụ</h6>
-            <p><a href="#!" class="text-reset">24/7</a></p>
-            <p><a href="#!" class="text-reset">bảo hành 6 tháng</a></p>
-            <p><a href="#!" class="text-reset">free ship</a></p>
-            <p><a href="#!" class="text-reset">lỗi 1 đổi 1</a></p>
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 ">
+            <h6 class="text-uppercase fw-bold mb-4 ">Dịch vụ</h6>
+            <p><a href="#!" class="text-reset">Hướng dẫn đặt hàng</a></p>
+            <p><a href="#!" class="text-reset">Bảo hành 6 tháng</a></p>
+            <p><a href="#!" class="text-reset">Liên hệ chúng tôi</a></p>
+            <p><a href="#!" class="text-reset">Quy định đổi trả</a></p>
             </div>
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">Liên hệ</h6>
-            <p><i class="fas fa-home me-3"></i> Hà nội, Việt Nam</p>
-            <p><i class="fas fa-envelope me-3"></i> shop@gmail.com</p>
-            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 ">
+            <h6 class="text-uppercase fw-bold mb-4 ">Liên hệ</h6>
+            <p><i class="fas fa-home me-3"></i>Hà Nội - Việt Nam</p>
+            <p><i class="fas fa-envelope me-3"></i> wumingshop@gmail.com</p>
+            <p><i class="fas fa-phone me-3"></i> 099999999</p>
+            <p><i class="fas fa-print me-3"></i> 04339999</p>
             </div>
         </div>
         </div>

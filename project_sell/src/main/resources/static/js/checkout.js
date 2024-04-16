@@ -117,7 +117,7 @@ async function requestPayMentMomo() {
 
     var urlinit = 'http://localhost:8080/api/urlpayment';
     var paymentDto = {
-        "content": "thanh toán đơn hàng yody",
+        "content": "thanh toán đơn hàng WuMing",
         "returnUrl": returnurl,
         "notifyUrl": returnurl,
         "codeVoucher": voucherCode,
