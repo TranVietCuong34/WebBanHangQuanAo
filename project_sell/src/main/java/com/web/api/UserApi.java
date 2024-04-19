@@ -52,13 +52,13 @@ public class UserApi {
         this.mailService = mailService;
     }
 
-    /*token device get from firebase*/
+    // login
     @PostMapping("/login")
     public TokenDto authenticate(@RequestBody LoginDto loginDto) throws Exception {
         TokenDto tokenDto = userService.login(loginDto.getUsername(), loginDto.getPassword(), loginDto.getTokenFcm());
         return tokenDto;
     }
-
+    
     @PostMapping("/regis")
     public ResponseEntity<?> regisUser(@RequestBody UserRequest userRequest) throws URISyntaxException {
         User user = userMapper.userRequestToUser(userRequest);

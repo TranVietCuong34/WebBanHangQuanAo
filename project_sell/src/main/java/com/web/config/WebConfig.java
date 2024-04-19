@@ -18,7 +18,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins("*")
-                .allowCredentials(false)
+                .allowCredentials(false)  // Vô hiệu hóa việc gửi cookie hoặc thông tin xác thực HTTP (như tên người dùng và mật khẩu) qua các nguồn gốc.
                 .allowedOriginPatterns("http://*","https://*")
                 .allowedMethods("*")
                 .allowedHeaders("*")

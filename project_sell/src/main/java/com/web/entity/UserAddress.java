@@ -37,7 +37,7 @@ public class UserAddress {
     @JoinColumn(name = "ward_id")
     private Wards wards;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 }
