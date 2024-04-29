@@ -364,4 +364,10 @@ public class ProductServiceImp implements ProductService {
         });
         return result;
     }
+
+	@Override
+	public ProductSize finByQualitySizeId(Long id) {
+		Optional<ProductSize> result = productSizeRepository.findById(id);
+		return result.get();
+	}
 }

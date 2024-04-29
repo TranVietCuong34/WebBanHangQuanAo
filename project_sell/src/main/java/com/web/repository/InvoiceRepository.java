@@ -41,7 +41,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice,Long> {
     public Page<Invoice> findByDateAndPaytypeAndStatus(Date from, Date to, PayType payType,Long statusId, Pageable pageable);
 
     @Query(value = "select sum(i.total_amount) from invoice i where Month(i.created_date) = ?1 and Year(i.created_date) = ?2 and (i.pay_type = 0 or i.status_current = 4)", nativeQuery = true)
-    public Double calDt(Integer thang, Integer month);
+    public Double calDt(Integer thang, Integer year);
 
     @Query(value = "select sum(i.total_amount) from invoice i \n" +
             "inner join invoice_status ista on ista.invoice_id = i.id\n" +

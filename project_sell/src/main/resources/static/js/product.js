@@ -95,7 +95,7 @@ async function loadAProduct() {
         var result = await response.json();
         document.getElementById("detailnamepro").innerHTML = result.name
         document.getElementById("codepro").innerHTML = result.code
-        document.getElementById("quansale").innerHTML = 'Đã bán ' + result.quantitySold
+        document.getElementById("quansale").innerHTML = 'Đã bán: ' + result.quantitySold
         document.getElementById("pricedetail").innerHTML = formatmoney(result.price)
         document.getElementById("imgdetailpro").src = result.imageBanner
         document.getElementById("descriptiondetail").innerHTML = result.description
@@ -213,14 +213,22 @@ async function clickImgdetail(e) {
     document.getElementById("imgdetailpro").src = e.src
 }
 
-function clickSize(e) {
+async function clickSize(e) {
     var size = document.getElementsByClassName("radio-custom");
     for (i = 0; i < size.length; i++) {
         document.getElementsByClassName("radio-custom")[i].classList.remove('activesize');
     }
     e.classList.add('activesize')
     var inp = e.getElementsByTagName('input')[0]
-    inp.checked = 'checked'
+    inp.checked = 'checked';
+    
+    var qualitySizeId = inp.value;
+     var url = 'http://localhost:8080/api/product-size/public/find-quality?qualitySizeId=' + qualitySizeId;
+    const response = await fetch(url, {
+        method: 'GET'
+    });
+    var result = await response.json();
+    document.getElementById("soluongtrongkho").innerHTML = 'Số Lượng còn: ' + result.quantity
 }
 
 function upAndDownDetail(val) {

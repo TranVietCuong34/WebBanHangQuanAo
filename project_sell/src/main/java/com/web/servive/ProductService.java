@@ -3,6 +3,8 @@ package com.web.servive;
 import com.web.dto.request.ProductRequest;
 import com.web.dto.response.ProductResponse;
 import com.web.entity.Product;
+import com.web.entity.ProductSize;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -39,4 +41,5 @@ public interface ProductService {
     public ProductResponse findByAlias(String alias);
 
     public List<Product> findByImage(MultipartFile multipartFile) throws IOException;
+    public ProductSize finByQualitySizeId(Long id);
 }

@@ -213,7 +213,7 @@ public class InvoiceServiceImp implements InvoiceService {
         }
         Optional<Invoice> invoice = invoiceRepository.findById(invoiceId);
         if(invoice.isEmpty()){
-            throw new MessageException("invoice id not found");
+            throw new MessageException("Không tìm thấy hóa đơn");
         }
         if(invoiceStatusRepository.findByInvoiceAndStatus(invoiceId, statusId).isPresent()){
             throw new MessageException("Trạng thái đơn hàng này đã được cập nhật");

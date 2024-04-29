@@ -14,7 +14,7 @@ async function loadMyInvoice() {
                     <td class="floatr">${list[i].createdTime}<br>${list[i].createdDate}</td>
                     <td>${list[i].address}</td>
                     <td class="floatr"><span class="yls">${formatmoney(list[i].totalAmount)}</span></td>
-                    <td><span class="span_pending">${list[i].payType == 'PAYMENT_MOMO'?'<span class="dathanhtoan">Đã thanh toán</span>':'<span class="chuathanhtoan">Chưa thanh toán</span>'}</span></td>
+                    <td><span class="span_pending">${list[i].payType == 'PAYMENT_MOMO'?'<span class="dathanhtoan">Đã thanh toán</span>':'<span class="chuathanhtoan">Thanh toán khi nhận hàng</span>'}</span></td>
                     <td class="floatr"><span class="span_">${list[i].status.name}</span></td>
                     <td>
                     ${(list[i].status.id == 1 || list[i].status.id== 2) && list[i].payType == 'PAYMENT_DELIVERY'?

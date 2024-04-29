@@ -11760,10 +11760,6 @@ body {
     padding: 50px;
 }
 
-.header-sp {
-    margin-bottom: 50px;
-}
-
 .checkbox-custom {
     display: block;
     position: relative;
@@ -11940,7 +11936,6 @@ body {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     border-radius: 10px;
-    margin-top: 15px;
 }
 
 .thongke5 {
@@ -11953,7 +11948,6 @@ body {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     border-radius: 10px;
-    margin-top: 15px;
 }
 
 .texts {
@@ -12431,7 +12425,6 @@ label {
 
 .divsearchtb {
     position: absolute;
-    right: 0px;
 }
 
 .headertable {

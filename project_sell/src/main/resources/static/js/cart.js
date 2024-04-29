@@ -28,6 +28,12 @@ async function addCart(product) {
         "size": size,
         "quantiy": document.getElementById("inputslcart").value
     }
+    var soLuongHTML = document.getElementById("soluongtrongkho").innerHTML;
+    var soLuongTrongkhoString = soLuongHTML.replace(/[^0-9]/g, ""); 
+	var quantityTrongKho = Number(soLuongTrongkhoString);
+    if(obj.quantiy > quantityTrongKho){
+		toastr.error("Số lượng không đủ")
+	}
     if (localStorage.getItem("product_cart") == null) {
         var listproduct = [];
         listproduct.push(obj);

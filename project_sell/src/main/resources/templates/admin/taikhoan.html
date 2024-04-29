@@ -44,10 +44,13 @@
             <main class="main">
                 <div class="col-sm-12 header-sp">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 col-6">
-                            <label>&ThinSpace;</label><br>
-                            <a data-bs-toggle="modal" data-bs-target="#addtk" class="btn btn-success"><i class="fa fa-plus"></i> Thêm admin</a>
-                        </div>
+						<div class="headertable col-md-3">
+							<div class="divsearchtb">
+								<label class="lb-form">Search</label><br>
+								<input onkeyup="searchTable()" id="searchtable" placeholder="tìm kiếm" class="inputsearchtable">
+							</div>
+						</div>
+                        
                         <div class="col-md-3 col-sm-6 col-6">
                             <label class="lb-form">Chọn quyền</label>
                             <select onchange="filteruser()" id="role" class="form-control">
@@ -56,20 +59,20 @@
                                 <option value="ROLE_ADMIN">Tài khoản admin</option>
                             </select>
                         </div>
+						<div class="col-md-6 col-sm-6 col-6">
+							<label>&ThinSpace;</label><br>
+							<a data-bs-toggle="modal" data-bs-target="#addtk" class="btn btn-success" style="background-color:	#0d6efd;							margin-left: 70%;"><i
+									class="fa fa-plus"></i> Thêm admin</a>
+						</div>
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="wrapper">
-                        <div class="headertable">
-                            <div class="divsearchtb">
-                                <label>search: </label>
-                                <input onkeyup="searchTable()" id="searchtable" placeholder="tìm kiếm" class="inputsearchtable">
-                            </div>
-                        </div>
+                       
                         <table class="table table-striped tablefix">
                             <thead class="thead-tablefix">
                                 <tr>
-									<th>ID</th>
+									<th>STT</th>
                                     <th>Email</th>
                                     <th>Họ tên</th>
                                     <th>Số điện thoại</th>

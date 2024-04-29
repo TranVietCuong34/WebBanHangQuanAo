@@ -1,5 +1,5 @@
 var token = localStorage.getItem("token");
-var size = 2;
+var size = 10;
 async function loadVoucher(page, start, end) {
     var url = 'http://localhost:8080/api/voucher/admin/findAll-page?page=' + page + '&size=' + size;
     if (start != null && start != "" && end != null && end != "" && start != 'null' && end != 'null') {
@@ -27,12 +27,12 @@ async function loadVoucher(page, start, end) {
                     <td>${list[i].endDate}</td>
                     <td>${list[i].block == true ? '<span class="locked">Đã khóa</span>':'<span class="actived">Đang hoạt động</span>'}</td>
                     <td class="sticky-col">
-                        <i onclick="deleteVoucher(${list[i].id})" class="fa fa-trash iconaction"></i><br>
+                        <i onclick="deleteVoucher(${list[i].id})" class="fa fa-trash iconaction"></i>
                         <a href="addvoucher?id=${list[i].id}"><i class="fa fa-edit iconaction"></i></a>
                     </td>
                 </tr>`
     }
-    document.getElementById("listvoucher").innerHTML = main
+    document.getElementById("listvoucher").innerHTML = main;
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
         mainpage += `<li onclick="loadVoucher(${(Number(i) - 1)},'${start}','${end}')" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`

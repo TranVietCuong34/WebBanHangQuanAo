@@ -1,5 +1,5 @@
 var token = localStorage.getItem("token");
-var size = 20;
+var size = 10;
 async function loadAllUser(page, param) {
     if (param == null) {
         param = "";
@@ -41,7 +41,10 @@ async function loadAllUser(page, param) {
                     ${btn}
                 </tr>`
     }
-    document.getElementById("listuser").innerHTML = main
+    document.getElementById("listuser").innerHTML = main;
+     if(param == ""){
+		param = null;
+	}
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
         mainpage += `<li onclick="loadAllUser(${(Number(i) - 1)},${param})" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`

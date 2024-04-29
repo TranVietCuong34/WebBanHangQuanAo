@@ -2,8 +2,10 @@ var token = localStorage.getItem("token");
 const exceptionCode = 417;
 var tokenFcm = "";
 async function loadMenu() {
+	var userJson = localStorage.getItem("user");
+	var  use = JSON.parse(userJson);
     var dn = `<span class="nav-item dropdown pointermenu gvs">
-                <i class="fa fa-user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Tài khoản</i>
+                <i class="fa fa-user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ${use.username}</i>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="account">Tài khoản</a></li>
                     <li onclick="logout()"><a class="dropdown-item" href="#">Đăng xuất</a></li>

@@ -25,7 +25,10 @@ async function loadBlog(page) {
                     </td>
                 </tr>`
     }
-    document.getElementById("listblog").innerHTML = main
+    document.getElementById("listblog").innerHTML = main;
+     if(param == ""){
+		param = null;
+	}
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
         mainpage += `<li onclick="loadBlog(${(Number(i) - 1)})" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`

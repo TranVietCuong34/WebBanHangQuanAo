@@ -5,12 +5,17 @@ import com.web.exception.MessageException;
 import com.web.repository.InvoiceDetailRepository;
 import com.web.repository.ProductColorRepository;
 import com.web.repository.ProductSizeRepository;
+import com.web.servive.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/product-size")
@@ -22,6 +27,9 @@ public class ProductSizeApi {
 
     @Autowired
     private InvoiceDetailRepository invoiceDetailRepository;
+    
+    @Autowired
+    private ProductService productService;
 
     @DeleteMapping("/admin/delete")
     public ResponseEntity<?> delete(@RequestParam("id") Long id){
@@ -38,4 +46,10 @@ public class ProductSizeApi {
         List<ProductSize> result = productSizeRepository.findByProductColor(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+    @GetMapping("/public/find-quality")
+    public ResponseEntity<?> findByQualityProSize(@RequestParam("qualitySizeId") Long id) {
+    	 ProductSize result = productService.finByQualitySizeId(id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
 }

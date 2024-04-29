@@ -26,7 +26,10 @@ async function loadCategory(page, param) {
                     </td>
                 </tr>`
     }
-    document.getElementById("listcategory").innerHTML = main
+    document.getElementById("listcategory").innerHTML = main;
+     if(param == ""){
+		param = null;
+	}
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
         mainpage += `<li onclick="loadCategory(${(Number(i) - 1)},${param})" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`

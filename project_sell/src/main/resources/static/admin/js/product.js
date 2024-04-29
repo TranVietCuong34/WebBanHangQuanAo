@@ -1,6 +1,6 @@
 const listFile = [];
 
-var size = 8;
+var size = 10
 async function loadProduct(page, param, listcate) {
     if (param == null) {
         param = "";
@@ -49,7 +49,10 @@ async function loadProduct(page, param, listcate) {
                     </td>
                 </tr>`
     }
-    document.getElementById("listproduct").innerHTML = main
+    document.getElementById("listproduct").innerHTML = main;
+    if(param == ""){
+		param = null;
+	}
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
         mainpage += `<li onclick="loadProduct(${(Number(i) - 1)},${param},${listcate})" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`
@@ -458,7 +461,7 @@ async function loadAllCategorySelect() {
     document.getElementById("listdpar").innerHTML = main
     const ser = $("#listdpar");
     ser.select2({
-        placeholder: "Chọn danh mục sản phẩm",
+        placeholder: "Danh mục",
     });
 }
 

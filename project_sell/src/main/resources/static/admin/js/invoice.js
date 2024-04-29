@@ -42,7 +42,10 @@ async function loadInvoice(page) {
                     </td>
                 </tr>`
     }
-    document.getElementById("listinvoice").innerHTML = main
+    document.getElementById("listinvoice").innerHTML = main;
+     if(param == ""){
+		param = null;
+	}
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
         mainpage += `<li onclick="loadInvoice(${(Number(i) - 1)})" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`

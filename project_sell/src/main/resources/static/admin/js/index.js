@@ -87,7 +87,7 @@ async function thongke() {
         })
     });
     var result = await res.text();
-    document.getElementById("soLuongNV").innerHTML = result
+  /*  document.getElementById("soLuongNV").innerHTML = result*/
 
 
     var url = 'http://localhost:8080/api/statistic/admin/number-product';
@@ -97,7 +97,7 @@ async function thongke() {
         })
     });
     var result = await resp.text();
-    document.getElementById("soLuongMH").innerHTML = result
+    /*document.getElementById("soLuongMH").innerHTML = result*/
 
 
     var url = 'http://localhost:8080/api/statistic/admin/revenue-today';
