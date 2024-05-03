@@ -103,4 +103,9 @@ public class ProductApi {
         List<Product> response = productService.findByImage(file);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+    @GetMapping("/public/topProduct")
+    public ResponseEntity<?> findTop3ByOrderByPriceDesc(){
+        List<Object[]> response = productService.findTop3ByOrderByQuantitySoldDesc();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

@@ -42,4 +42,7 @@ public interface ProductService {
 
     public List<Product> findByImage(MultipartFile multipartFile) throws IOException;
     public ProductSize finByQualitySizeId(Long id);
+    
+    
+    public  List<Object[]> findTop3ByOrderByQuantitySoldDesc();
 }

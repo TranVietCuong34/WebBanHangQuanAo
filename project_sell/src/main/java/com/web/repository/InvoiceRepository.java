@@ -1,5 +1,6 @@
 package com.web.repository;
 
+
 import com.web.entity.Category;
 import com.web.entity.Invoice;
 import com.web.enums.PayType;
@@ -43,13 +44,21 @@ public interface InvoiceRepository extends JpaRepository<Invoice,Long> {
     @Query(value = "select sum(i.total_amount) from invoice i where Month(i.created_date) = ?1 and Year(i.created_date) = ?2 and (i.pay_type = 0 or i.status_current = 4)", nativeQuery = true)
     public Double calDt(Integer thang, Integer year);
 
-    @Query(value = "select sum(i.total_amount) from invoice i \n" +
-            "inner join invoice_status ista on ista.invoice_id = i.id\n" +
-            "WHERE (ista.status_id = 4 or i.pay_type = 0 ) and ista.created_date = ?1", nativeQuery = true)
+    @Query(value = "select sum(i.total_amount) \r\n"
+    		+ "from invoice i \r\n"
+    		+ "WHERE (i.pay_type = 0 or i.status_current = 4) and i.created_date = ?1", nativeQuery = true)
     public Double revenueByDate(Date ngay);
 
     @Query(value = "select count(i.id) from invoice i\n" +
             "inner join invoice_status issn on issn.invoice_id = i.id\n" +
             "where issn.status_id = 4 and issn.created_date = ?1",nativeQuery = true)
     public Double numInvoiceToDay(Date ngay);
+    
+	@Query(value = "\r\n"
+			+ "select i.created_date as col_0_0_, sum(i.total_amount) as col_1_0_ \r\n"
+			+ "from invoice i \r\n"
+			+ "where i.created_date>=?1 and i.created_date<=?2 and (i.pay_type = 0 or i.status_current = 4) \r\n"
+			+ "group by i.created_date order by i.created_date",nativeQuery = true)
+	List<Object[]> filterByDay(Date startDate, Date endDate);
+
 }

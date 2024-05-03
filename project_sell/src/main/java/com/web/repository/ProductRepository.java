@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
@@ -28,4 +30,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query("select distinct p from Product p inner join p.productCategories pc where pc.category.id = ?1")
     public Page<Product> findByCategory(Long category, Pageable pageable);
+
+  
+    
+    public List<Object[]> findTop5ByOrderByQuantitySoldDesc();
+   
 }

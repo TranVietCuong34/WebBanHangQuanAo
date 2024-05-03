@@ -40,24 +40,48 @@
         <div id="layoutSidenav_nav"></div>
         <div id="layoutSidenav_content">
             <main class="main">
-                <div class="col-sm-12 header-sp row mb-3">
-                    <div class="col-md-3">
-                        <p class="loctheongay">Chọn năm cần xem</p>
-                        <select id="nams" class="form-control">
-                        <option id="2023">2023</option>
-                        <option id="2024">2024</option>
-                        <option id="2025">2025</option>
-                        <option id="2026">2026</option>
-                        <option id="2027">2027</option>
-                        <option id="2028">2028</option>
-                      </select>
-                    </div>
-                    <div class="col-md-2"><br>
-                        <button onclick="loadByNam()" class="btn btn-primary form-control" style="margin-top: 10px;background-color:	#0d6efd;"><i class="fa fa-filter"></i> Lọc</button>
-                    </div>
-                </div>
+				<div class="col-sm-12 header-sp row mb-3">				
+					<div class="col-md-2">
+						<input id="startByDate" type="date" class="form-control">
+					</div>
+					<div class="col-md-2">
+						<input id="endByDate" type="date" class="form-control">
+					</div>
+					<div class="col-md-1">
+						<button onclick="loadByNgay()" class="btn btn-primary form-control"
+							style="background-color:	#0d6efd;"><i class="fa fa-filter"></i> Lọc</button>
+					</div>
+					
+					
+					<div class="col-md-2 ms-3">
+						<select id="topProduct" class="form-control">
+							<option id="2024">Sản phẩm bán chạy</option>
+						</select>
+					</div>
+					<div class="col-md-1">
+						<button onclick="loadByTopProduct()" class="btn btn-primary form-control" style="background-color:	#0d6efd;"><i
+								class="fa fa-filter"></i> Lọc</button>
+					</div>
+					<div class="d-flex mt-3">
+						<div class="col-md-1">
+							<select id="nams" class="form-control">
+								<option id="2024">2024</option>
+								<option id="2025">2025</option>
+								<option id="2026">2026</option>
+								<option id="2027">2027</option>
+								<option id="2028">2028</option>
+							</select>
+						</div>
+						<div class="col-md-1 ms-3">
+							<button onclick="loadByNam()" class="btn btn-primary form-control" style="background-color:	#0d6efd;"><i
+									class="fa fa-filter"></i> Lọc</button>
+						</div>
+						
+					</div>
+					
+				</div>
                 <div class="col-sm-12 divtale">
-                    <div class="card chart-container divtale">
+                    <div class="card chart-container divtale" id="dvChart">
                         <canvas id="chart"></canvas>
                     </div>
                 </div>

@@ -100,15 +100,24 @@ async function loadAProduct() {
         document.getElementById("imgdetailpro").src = result.imageBanner
         document.getElementById("descriptiondetail").innerHTML = result.description
         
-        
+        console.log(result);
          document.getElementById("btnmuangay").onclick = function() {
             var sizeId = null;
             try {
-                sizeId = document.querySelector('input[name="sizepro"]:checked').value
+                sizeId = document.querySelector('input[name="sizepro"]:checked').value;
+                
             } catch (error) {
                 toastr.error("Bạn chưa chọn kích thước sản phẩm");
                 return;
             }
+			 var soLuongHTML = document.getElementById("soluongtrongkho").innerHTML;
+			 var soLuongTrongkhoString = soLuongHTML.replace(/[^0-9]/g, "");
+			 var quantityTrongKho = result.quantitySold;
+			 var quantitySelect = document.getElementById("inputslcart").value;
+			 if (quantitySelect > quantityTrongKho) {
+				 toastr.error("Số lượng không đủ")
+				 return;
+			 }
             addCart(result);
             window.location.href = 'cart'
         }

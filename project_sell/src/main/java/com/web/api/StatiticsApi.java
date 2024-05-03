@@ -1,10 +1,14 @@
 package com.web.api;
 
+import com.web.entity.Invoice;
 import com.web.repository.InvoiceRepository;
 import com.web.repository.ProductRepository;
 import com.web.repository.UserRepository;
 import com.web.utils.Contains;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -24,6 +28,7 @@ public class StatiticsApi {
 
     @Autowired
     private ProductRepository productRepository;
+    
 
     @GetMapping("/admin/revenue-this-month")
     public Double doanhThuThangNay(){
@@ -67,5 +72,14 @@ public class StatiticsApi {
             list.add(sum);
         }
         return list;
+    }
+    @GetMapping("/admin/revenue-filter-day")
+    public ResponseEntity<?> getRevenueByDay(
+            @RequestParam("startDate") Date startDate,
+            @RequestParam("endDate") Date endDate) {
+
+        List<Object[]> revenueList = invoiceRepository.filterByDay(startDate, endDate);
+
+        return new ResponseEntity<>(revenueList, HttpStatus.OK);
     }
 }

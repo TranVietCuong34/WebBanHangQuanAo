@@ -370,4 +370,10 @@ public class ProductServiceImp implements ProductService {
 		Optional<ProductSize> result = productSizeRepository.findById(id);
 		return result.get();
 	}
+
+	@Override
+	public List<Object[]> findTop3ByOrderByQuantitySoldDesc() {
+		List<Object[]> result = productRepository.findTop5ByOrderByQuantitySoldDesc();
+		return result;
+	}
 }

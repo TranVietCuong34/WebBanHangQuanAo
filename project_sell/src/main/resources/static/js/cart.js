@@ -33,6 +33,7 @@ async function addCart(product) {
 	var quantityTrongKho = Number(soLuongTrongkhoString);
     if(obj.quantiy > quantityTrongKho){
 		toastr.error("Số lượng không đủ")
+		return;
 	}
     if (localStorage.getItem("product_cart") == null) {
         var listproduct = [];
