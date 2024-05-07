@@ -45,8 +45,10 @@ async function loadProduct(page, param, listcate) {
                     <td>${list[i].quantitySold}</td>
                     <td class="sticky-col">
                         <i onclick="deleteProduct(${list[i].id})" class="fa fa-trash-alt iconaction"></i>
-                        <a href="addproduct?id=${list[i].id}"><i class="fa fa-edit iconaction"></i><br></a>
+                        <a href="addproduct?id=${list[i].id}"><i class="fa fa-edit iconaction"></i></a>
+                        <i onclick="loadIventory(${list[i].id})" data-bs-toggle="modal" data-bs-target="#quantityInventory" class="fa fa-eye iconaction"></i>
                     </td>
+                    
                 </tr>`
     }
     document.getElementById("listproduct").innerHTML = main;
@@ -546,3 +548,121 @@ function loadInit() {
     }
 
 }
+
+
+
+async function loadAProduct() {
+    var uls = new URL(document.URL)
+    var id = uls.searchParams.get("id");
+    if (id != null) {
+        var url = 'http://localhost:8080/api/product/admin/findById?id=' + id;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token
+            })
+        });
+        var result = await response.json();
+        console.log(result)
+        document.getElementById("codesp").value = result.code
+        document.getElementById("namesp").value = result.name
+        document.getElementById("alias").value = result.alias
+        document.getElementById("price").value = result.price
+        document.getElementById("anhdathem").style.display = 'block'
+        linkbanner = result.imageBanner
+        document.getElementById("imgpreproduct").src = result.imageBanner
+        tinyMCE.get('editor').setContent(result.description)
+        var main = ''
+        for (i = 0; i < result.productImages.length; i++) {
+            main += `<div id="imgdathem${result.productImages[i].id}" class="col-md-3 col-sm-4 col-4">
+                        <img style="width: 90%;" src="${result.productImages[i].linkImage}" class="image-upload">
+                        <button onclick="deleteProductImage(${result.productImages[i].id})" class="btn btn-danger form-control">Xóa ảnh</button>
+                    </div>`
+        }
+        document.getElementById("listanhdathem").innerHTML = main
+        await loadAllCategorySelect();
+        var listCate = []
+        for (i = 0; i < result.productCategories.length; i++) {
+            listCate.push(result.productCategories[i].category.id);
+        }
+        console.log(listCate)
+        $("#listdpar").val(listCate).change();;
+        var color = result.productColors;
+        var mcl = ''
+        for (i = 0; i < color.length; i++) {
+            var blocks = '';
+            var size = color[i].productSizes;
+            for (j = 0; j < size.length; j++) {
+                blocks += ` <div class="singelsizeblock">
+                            <input value="${size[j].id}" type="hidden" class="idsize">
+                            <input value="${size[j].sizeName}" placeholder="tên size" class="sizename">
+                            <input value="${size[j].quantity}" placeholder="Số lượng" class="sizequantity">
+                            <i onclick="deleteProductSize(${size[j].id})" class="fa fa-trash-alt trashsize"></i>
+                        </div>`
+            }
+            mcl += `<div class="col-sm-6">
+            <div class="singlecolor row">
+                <div class="col-12"><i onclick="deleteProductColor(${color[i].id})" class="fa fa-trash pointer"></i></div>
+                <div class="col-8 inforcolor">
+                    <input type="hidden" value="${color[i].id}" class="idcolor">
+                    <label class="lb-form">Tên màu:</label>
+                    <input type="text" value="${color[i].colorName}" class="form-control colorName">
+                    <label class="lb-form">Ảnh màu</label>
+                    <input onchange="priviewImg(this)" type="file" class="form-control fileimgclo">
+                </div>
+                <div class="col-4 divimgpre">
+                    <img class="imgpreview" src="${color[i].linkImage}" style="width: 100%;">
+                </div>
+                <span onclick="addSizeBlock(this)" class="pointer btnaddsize"><i class="fa fa-plus"></i> Thêm size</span>
+                <div class="listsizeblock">
+                   ${blocks}
+                </div>
+            </div></div>`
+        }
+        document.getElementById("listcolorblock").innerHTML = mcl
+    }
+}
+async function loadIventory(id) {
+    if (id != null) {
+        var url = 'http://localhost:8080/api/product/admin/findById?id=' + id;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token
+            })
+        });
+        var list = await response.json();
+        console.log(list)
+        console.log(list.productColors.colorName);
+		var main = ''
+		for (let i = 0; i < list.productColors.length; i++) {
+			// Duyệt qua từng màu sắc của sản phẩm
+			for (let j = 0; j < list.productColors[i].productSizes.length; j++) {
+				// Duyệt qua từng kích cỡ của mỗi màu sắc
+				main += `<tr>
+                <td>${list.productColors[i].colorName}</td>
+                <td class="sldetailacc">${list.productColors[i].productSizes[j].sizeName}</td>
+                <td class="pricedetailacc yls">${list.productColors[i].productSizes[j].quantity}</td>
+            </tr>`;
+			}
+    }
+		document.getElementById("listInventory").innerHTML = main
+       /* var color = result.productColors;
+        var mcl = ''
+        for (i = 0; i < color.length; i++) {
+            var blocks = '';
+            var size = color[i].productSizes;
+            for (j = 0; j < size.length; j++) {
+                mcl += 
+                `<tr>
+                            <td>Đen</td>
+                            <td class="sldetailacc">${size[j].sizeName}</td>
+                            <td class="pricedetailacc yls">${size[j].quantity}</td>
+                 </tr>`
+
+            }         
+        }
+        document.getElementById("listInventory").innerHTML = mcl;*/
+    }
+}
+

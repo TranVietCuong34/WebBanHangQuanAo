@@ -100,7 +100,7 @@ async function loadAProduct() {
         document.getElementById("imgdetailpro").src = result.imageBanner
         document.getElementById("descriptiondetail").innerHTML = result.description
         
-        console.log(result);
+       
          document.getElementById("btnmuangay").onclick = function() {
             var sizeId = null;
             try {

@@ -98,7 +98,8 @@
                                     <td></td>
                                     <td class="sticky-col">
                                         <i class="fa fa-trash-alt iconaction"></i>
-                                        <i class="fa fa-edit iconaction"></i><br>
+                                        <i class="fa fa-edit iconaction"></i>
+										<i class="fa fa-eye iconaction"></i>
                                     </td>
                                 </tr>
                             </tbody>
@@ -117,5 +118,38 @@
     </div>
 
 </body>
+<div class="modal fade" id="quantityInventory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down modeladdres">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Số Lượng Hàng Trong Kho</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
+                <table class="table table-cart table-order" id="detailInvoice">
+                    <thead class="thead-default theaddetail">
+                        <tr>
+                             <th>Màu sắc</th>						
+ 							<th>Kích Thước</th>
+                            <th>Số lượng còn</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody id="listInventory">
+                        <tr>
+                               <td>
+                                <a href="">Áo Thun Thể Thao Nam Run</a><br>                           
+                                <span>Mã sản phẩm: STM6099-DEN-L</span><br>                              
+                            </td>
+                            <td>Đen</td>
+                            <td class="sldetailacc">L</td>
+                            <td class="pricedetailacc yls">10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

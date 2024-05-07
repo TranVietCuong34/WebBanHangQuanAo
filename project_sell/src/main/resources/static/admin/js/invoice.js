@@ -43,9 +43,7 @@ async function loadInvoice(page) {
                 </tr>`
     }
     document.getElementById("listinvoice").innerHTML = main;
-     if(param == ""){
-		param = null;
-	}
+    
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
         mainpage += `<li onclick="loadInvoice(${(Number(i) - 1)})" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`
@@ -62,12 +60,13 @@ async function loadDetailInvoice(id) {
         })
     });
     var list = await res.json();
+      console.log(list)
     var main = ''
     for (i = 0; i < list.length; i++) {
         main += `<tr>
                     <td><img src="${list[i].product.imageBanner}" class="imgdetailacc"></td>
                     <td>
-                        <a href="">${list[i].productName}</a><br>
+                        <a href="addproduct?id=${list[i].id}">${list[i].productName}</a><br>
                         <span>${list[i].colorName} / ${list[i].productSize.sizeName}</span><br>
                         <span>Mã sản phẩm: ${list[i].product.code}</span><br>
                         <span class="slmobile">SL: ${list[i].quantity}</span>
@@ -93,10 +92,8 @@ async function loadDetailInvoice(id) {
     document.getElementById("ttvanchuyen").innerHTML = result.status.name
     document.getElementById("tennguoinhan").innerHTML = result.receiverName
     document.getElementById("addnhan").innerHTML = result.address
-    document.getElementById("addnhan").innerHTML = result.address
     document.getElementById("phonenhan").innerHTML = result.phone
-    document.getElementById("phonenhan").innerHTML = result.phone
-    document.getElementById("ghichunh").innerHTML = result.note == "" || result.note == null ? 'Không có ghi chú' : result.note
+     document.getElementById("ghichunh").innerHTML = result.note == "" || result.note == null ? 'Không có ghi chú' : result.note
 }
 
 function openStatus(idinvoice, idstatus) {
