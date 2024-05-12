@@ -1,9 +1,12 @@
 package com.web.api;
 
+import com.web.dto.response.InvoiceDetailResponse;
 import com.web.entity.Invoice;
+import com.web.repository.InvoiceDetailRepository;
 import com.web.repository.InvoiceRepository;
 import com.web.repository.ProductRepository;
 import com.web.repository.UserRepository;
+import com.web.servive.InvoiceDetailService;
 import com.web.utils.Contains;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +25,9 @@ public class StatiticsApi {
 
     @Autowired
     private InvoiceRepository invoiceRepository;
+    
+    @Autowired
+    private  InvoiceDetailService invoiceDetailService;
 
     @Autowired
     private UserRepository userRepository;
@@ -78,7 +84,7 @@ public class StatiticsApi {
             @RequestParam("startDate") Date startDate,
             @RequestParam("endDate") Date endDate) {
 
-        List<Object[]> revenueList = invoiceRepository.filterByDay(startDate, endDate);
+        List<InvoiceDetailResponse> revenueList = invoiceDetailService.filterByDay(startDate, endDate);
 
         return new ResponseEntity<>(revenueList, HttpStatus.OK);
     }

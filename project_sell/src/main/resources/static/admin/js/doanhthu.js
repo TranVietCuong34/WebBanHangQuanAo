@@ -60,43 +60,30 @@ async function revenueDay(start,end) {
     });
     var list = await response.json();
  	console.log(list);
-
-	var namNgay = [];
-	var dataNgay = [];
+	
+	
+	var main = ''
+	var totalAmount = 0; // Khởi tạo biến tổng tiền
 	for (i = 0; i < list.length; i++) {
-		 namNgay.push(list[i][0])
-		 dataNgay.push(list[i][1])
+		var amount = list[i].price * list[i].quantity; // Tính tổng tiền cho mỗi mặt hàng
+    	totalAmount += amount; // Cập nhật tổng tiền
+		main += 
+		`<div class="row p-4 border">                  
+                    <p class="col-sm-6 ">
+                        <span>${list[i].productName}</span>
+                        <span>${list[i].colorName} / ${list[i].productSize.sizeName}</span><br>
+                        <span>Mã sản phẩm: ${list[i].product.code}</span><br>
+                        <span class="slmobile">SL: ${list[i].quantity}</span>
+                    </p>
+                    <p class="col-sm-2 ">${formatmoney(list[i].price)}</p>
+                    <p class="col-sm-2 ">${list[i].quantity}</p>
+                    <p class="col-sm-2 ">${formatmoney(amount)}</p>
+                   
+         </div> `
 	}
 
-
-	$("canvas#chart").remove();
-	$("#dvChart").html('<canvas id="chart"></canvas>');
-	
-    const ctx = document.getElementById("chart").getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: namNgay,
-            datasets: [{
-                label: "Thống kế theo ngày",
-                backgroundColor: 'rgba(161, 198, 247, 1)',
-                borderColor: 'rgb(47, 128, 237)',
-                data: dataNgay,
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        callback: function(value) {
-                            return formatmoney(value);
-                        }
-                    }
-                }]
-            } 
-            
-        },
-    });
+    document.getElementById("dvChart").innerHTML = main;
+	document.getElementById("totalAmountDisplay").innerText = "Tổng tiền: " + formatmoney(totalAmount); // Hiển thị tổng tiền lên màn hình
 }
 
 async function revenueTopProduct() {

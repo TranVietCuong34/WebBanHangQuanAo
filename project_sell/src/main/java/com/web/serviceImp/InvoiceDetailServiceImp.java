@@ -9,6 +9,7 @@ import com.web.servive.InvoiceDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,15 @@ public class InvoiceDetailServiceImp implements InvoiceDetailService {
     @Override
     public List<InvoiceDetailResponse> findByInvoice(Long idInvoice) {
         List<InvoiceDetail> list = invoiceDetailRepository.findByInvoiceId(idInvoice);
+        List<InvoiceDetailResponse> result = new ArrayList<>();
+        for(InvoiceDetail d : list){
+            result.add(invoiceDetailMapper.invoiceDetailToResponse(d));
+        }
+        return result;
+    }
+    
+    public List<InvoiceDetailResponse> filterByDay(Date startDate, Date endDate) {
+        List<InvoiceDetail> list = invoiceDetailRepository.filterByDay(startDate,endDate);
         List<InvoiceDetailResponse> result = new ArrayList<>();
         for(InvoiceDetail d : list){
             result.add(invoiceDetailMapper.invoiceDetailToResponse(d));

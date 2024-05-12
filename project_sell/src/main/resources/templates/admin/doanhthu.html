@@ -81,10 +81,28 @@
 					
 				</div>
                 <div class="col-sm-12 divtale">
-                    <div class="card chart-container divtale" id="dvChart">
-                        <canvas id="chart"></canvas>
-                    </div>
+					
+					<div  id="dvChart">
+						<div class="row p-4 ">
+							<p class="col-sm-6 ">
+								<span>${list[i].productName}</span>
+								<span>${list[i].colorName} / ${list[i].productSize.sizeName}</span><br>
+								<span>Mã sản phẩm: ${list[i].product.code}</span><br>
+								<span class="slmobile">SL: ${list[i].quantity}</span>
+							</p>
+							<p class="col-sm-2 ">${formatmoney(list[i].price)}</p>
+							<p class="col-sm-2 ">${list[i].quantity}</p>
+							<p class="col-sm-2 ">${formatmoney(amount)}</p>
+							<hr>
+							
+						</div>
+						<canvas id="card chart-container divtale"></canvas>
+					
+					</div>
+					<p id="totalAmountDisplay" class="float-end p-4"></p>
+					
                 </div>
+				
             </main>
         </div>
     </div>

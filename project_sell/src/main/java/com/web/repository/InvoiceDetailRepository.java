@@ -1,12 +1,10 @@
 package com.web.repository;
 
-import com.web.entity.Category;
 import com.web.entity.InvoiceDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface InvoiceDetailRepository extends JpaRepository<InvoiceDetail,Long> {
@@ -23,4 +21,7 @@ public interface InvoiceDetailRepository extends JpaRepository<InvoiceDetail,Lon
 
     @Query("select count(i.id) from InvoiceDetail i where i.productSize.id = ?1")
     public Long countByProductSize(Long idProductSize);
+    
+    @Query(value = "select i from InvoiceDetail i where i.invoice.createdDate >= ?1 and i.invoice.createdDate <= ?2 and (i.invoice.payType = 0 or i.invoice.status = 4)")
+    public List<InvoiceDetail> filterByDay(Date startDate, Date endDate);
 }
