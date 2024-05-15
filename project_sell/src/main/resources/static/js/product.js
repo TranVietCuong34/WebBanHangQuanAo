@@ -110,9 +110,11 @@ async function loadAProduct() {
                 toastr.error("Bạn chưa chọn kích thước sản phẩm");
                 return;
             }
+            
+            
 			 var soLuongHTML = document.getElementById("soluongtrongkho").innerHTML;
 			 var soLuongTrongkhoString = soLuongHTML.replace(/[^0-9]/g, "");
-			 var quantityTrongKho = result.quantitySold;
+			 var quantityTrongKho = Number(soLuongTrongkhoString);
 			 var quantitySelect = document.getElementById("inputslcart").value;
 			 if (quantitySelect > quantityTrongKho) {
 				 toastr.error("Số lượng không đủ")
