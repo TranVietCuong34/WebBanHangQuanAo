@@ -83,7 +83,7 @@ async function loadAllCart() {
                     <td>
                         <div class="tdpricecart">
                             <p class="boldcart">${formatmoney(list[i].quantiy * list[i].product.price)}</p>
-                            <p onclick="remove(${list[i].color.id})" class="delcart"><i class="fa fa-trash-o facartde"></i></p>
+                            <p onclick="remove(${list[i].size.id})" class="delcart"><i class="fa fa-trash-o facartde"></i></p>
                         </div>
                     </td>
                 </tr>`
@@ -123,7 +123,7 @@ async function loadAllCartMobile() {
 
 async function remove(id) {
     var list = JSON.parse(localStorage.getItem("product_cart"));
-    var remainingArr = list.filter(data => data.color.id != id);
+    var remainingArr = list.filter(data => data.size.id != id);
     window.localStorage.setItem('product_cart', JSON.stringify(remainingArr));
     toastr.success("Xóa sản phẩm thành công");
     loadAllCart();
@@ -133,13 +133,20 @@ function upDownQuantity(idsize, quantiy) {
     var list = JSON.parse(localStorage.getItem("product_cart"));
     for (i = 0; i < list.length; i++) {
         if (list[i].size.id == idsize) {
-            list[i].quantiy = Number(list[i].quantiy) + Number(quantiy);
+			
+				 countQuantity = Number(list[i].quantiy) + Number(quantiy); 
+				 if(countQuantity > 0){
+					list[i].quantiy = countQuantity
+				 }
+				 else{
+					 alert("Số lượng sản phẩm đã đạt mức tối thiểu!");
+				 }
         }
     }
     window.localStorage.setItem('product_cart', JSON.stringify(list));
 
-    var list = JSON.parse(localStorage.getItem("product_cart"));
-    var remainingArr = list.filter(data => data.quantiy != 0);
+    var list1 = JSON.parse(localStorage.getItem("product_cart"));
+    var remainingArr = list1.filter(data => data.quantiy != 0);
     window.localStorage.setItem('product_cart', JSON.stringify(remainingArr));
     loadAllCart();
 }

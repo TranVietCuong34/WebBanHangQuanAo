@@ -4,8 +4,8 @@ var tokenFcm = "";
 async function loadMenu() {
 	var userJson = localStorage.getItem("user");
 	var  use = JSON.parse(userJson);
-    var dn = `<span class="nav-item dropdown pointermenu gvs">
-                <i class="fa fa-user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> ${use.username}</i>
+    /*var dn = `<span class="nav-item dropdown pointermenu gvs">
+                <i class="fa fa-user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> </i>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="account">Tài khoản</a></li>
                     <li onclick="logout()"><a class="dropdown-item" href="#">Đăng xuất</a></li>
@@ -13,7 +13,30 @@ async function loadMenu() {
             </span>`
     if (token == null) {
         dn = `<a href="login" class="pointermenu gvs"><i class="fa fa-user"> Đăng ký/ Đăng nhập</i></a>`
-    }
+    }*/
+	var dn = `<span class="nav-item dropdown pointermenu gvs">`;
+
+	if (token == null) {
+		// User not logged in, show login link
+		dn += `<a href="login" class="pointermenu gvs"><i class="fa fa-user"> Đăng ký/ Đăng nhập</i></a>`;
+	} else {
+		// User logged in, show dropdown menu with username
+		dn += `<i class="fa fa-user" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">`;
+
+		// Check if user data is available and username exists
+		if (use && use.username) {
+			dn += ` ${use.username}`; // Add username before dropdown toggle
+		}
+
+		dn += `</i>
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <li><a class="dropdown-item" href="account">Tài khoản</a></li>
+             <li onclick="logout()"><a class="dropdown-item" href="#">Đăng xuất</a></li>
+         </ul>`;
+	}
+
+	dn += `</span>`;
+
     var menu =
         `<div id="topmenu" class="topmenu container-fluid row">
         <div class="col-sm-2"><a href="index" class="linktop"><img style="width: 100px; margin-top: 10px;" src="image/logo.png"></a></div>
@@ -198,7 +221,7 @@ function loadFooter() {
                 <div id="listproductsearchmobile" class="row">
                     <!----
                     <div class="singlesearch col-md-12">
-                        <div class="p40"><a href=""><img class="imgprosearchp" src="image/pro.webp"></a></div>
+                        <div class="p40"><a href=""><img class="imgprosearchp" src=""></a></div>
                         <div class="p60">
                             <a href=""><span class="tenspsearch">Chân váy nữ dáng A</span><br>
                             <span class="tenspsearch">214.500đ</span></a>
