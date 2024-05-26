@@ -321,7 +321,7 @@ async function searchFull(page, sort) {
         }
     }
     var url = 'http://localhost:8080/api/product/public/searchFull?page=' + page + '&size=' + size + '&smallPrice=' + min_price + '&largePrice=' + max_price;
-    if (sort != null) {
+    if (sort != null && sort != 'null') {
         url += '&sort=' + sort;
     }
     const response = await fetch(url, {
@@ -359,7 +359,7 @@ async function searchFull(page, sort) {
 
     var mainpage = ''
     for (i = 1; i <= totalPage; i++) {
-        mainpage += `<li onclick="loadProductByCategory(${(Number(i) - 1)})" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`
+        mainpage += `<li onclick="searchFull(${(Number(i) - 1)}, '${sort}')" class="page-item"><a class="page-link" href="#listsp">${i}</a></li>`
     }
     document.getElementById("pageable").innerHTML = mainpage
 }
