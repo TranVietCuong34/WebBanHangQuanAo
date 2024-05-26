@@ -389,7 +389,7 @@ async function uploadFile(filePath) {
     if (res.status < 300) {
         linkbanner = await res.text();
     }
-}
+}	
 
 function priviewImg(e) {
     var dv = e.parentNode.parentNode;

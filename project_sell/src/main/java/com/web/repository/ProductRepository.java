@@ -31,8 +31,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select distinct p from Product p inner join p.productCategories pc where pc.category.id = ?1")
     public Page<Product> findByCategory(Long category, Pageable pageable);
 
-  
-    
+      
     public List<Object[]> findTop5ByOrderByQuantitySoldDesc();
+    
+    boolean existsByName(String name);
    
 }

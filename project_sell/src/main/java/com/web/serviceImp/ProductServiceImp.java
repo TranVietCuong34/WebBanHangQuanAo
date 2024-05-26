@@ -73,6 +73,10 @@ public class ProductServiceImp implements ProductService {
         if(product.getId() != null){
             throw new MessageException("id must null");
         }
+        // Check if a product with the same name already exists
+        if (productRepository.existsByName(product.getName())) {
+            throw new MessageException("A product with the same name already exists");
+        }
         product.setCreatedDate(new Date(System.currentTimeMillis()));
         product.setCreatedTime(new Time(System.currentTimeMillis()));
         product.setQuantitySold(0);

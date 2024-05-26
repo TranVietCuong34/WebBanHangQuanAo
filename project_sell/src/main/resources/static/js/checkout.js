@@ -190,9 +190,19 @@ async function paymentMomo() {
 
 async function paymentCod() {
     var note = document.getElementById("ghichudonhang").value;
+    var userAddressId = document.getElementById("sodiachi").value
+    // Kiểm tra nếu userAddressId trống
+    if (!userAddressId) {
+        swal({
+            title: "Thông báo",
+            text: "Vui lòng điền địa chỉ giao hàng.",
+            type: "warning"
+        });
+        return; // Dừng hàm nếu không có địa chỉ giao hàng
+    }
     var orderDto = {
         "payType": "PAYMENT_DELIVERY",
-        "userAddressId": document.getElementById("sodiachi").value,
+        "userAddressId": userAddressId,
         "voucherCode": voucherCode,
         "note": note,
         "listProductSize": listSize

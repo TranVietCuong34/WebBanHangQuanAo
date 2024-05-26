@@ -188,7 +188,7 @@ public class InvoiceServiceImp implements InvoiceService {
         invoiceStatus.setStatus(statusRepository.findById(StatusUtils.DANG_CHO_XAC_NHAN).get());
         invoiceStatusRepository.save(invoiceStatus);
 
-        PushNotificationRequest request = new PushNotificationRequest("Vừa có đơn đặt hàng mới: ","Đơn hàng mới"+result.getId(),"newinvoice",null);
+        PushNotificationRequest request = new PushNotificationRequest("Vừa có đơn đặt hàng mới: ","Đơn hàng mới "+result.getId(),"newinvoice",null);
         List<User> users = userRepository.getUserByRole(Contains.ROLE_ADMIN);
         for(User u : users){
             if(u.getTokenFcm() != null){
